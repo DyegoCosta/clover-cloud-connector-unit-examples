@@ -21,6 +21,9 @@ TestBase.prototype.readyTest = function(error, configuration) {
     } else {
         this.displayMessage({type:"success", message: configuration});
         configuration = this.decorateConfiguration(configuration);
+        configuration["friendlyId"] = configuration["friendlyId"] +
+          Math.floor(Math.random() * 1000000)
+        configuration["allowOvertakeConnection"] = false
         this.connector = new clover.CloverConnectorFactory().createICloverConnector(configuration);
         var connectorListener = this.getCloverConnectorListener(this.connector, this.progressinfoCallback);
         this.connector.addCloverConnectorListener(connectorListener);
